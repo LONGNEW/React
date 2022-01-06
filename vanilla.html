@@ -16,13 +16,17 @@
     const root = document.getElementById("root");
 
     function App() {
-      // modifier는 함수임. 
-      const [counter, modifier] = React.useState(0);
+      const [counter, setCounter] = React.useState(0);
+      const onClick = () => {
+        // useState에서 준 함수(Setter임)가 자동적으로 re-render하도록 함.
+        // 파라미터로 준 값을 counter에다가 넣음.
+        setCounter(counter + 1);
+      };
 
       return (
         <div>
           <h3>Total clicks: {counter}</h3>
-          <button>Click me</button>
+          <button onClick={onClick}>Click me</button>
         </div>
       );
     }
