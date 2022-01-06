@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>replit</title>
+    <!-- <link href="style.css" rel="stylesheet" type="text/css" /> -->
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+
+    const Title = () => (
+      <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
+        I'm a title{" "}
+      </h3>
+    );
+
+    const Button = () => (
+      <button
+        style={{
+          backgroundColor: "tomato",
+        }}
+        onClick={() => console.log("clicked")}
+      >
+        Click me
+      </button>
+    );
+    const Container = () => (
+      <div>
+        <Title />
+        <Button />
+      </div>
+    );
+    // const h3 = React.createElement(
+    //   "h3",
+    //   {
+    //     id: "sexy-span",
+    //     style: { color: "red" },
+    //     onMouseEnter: () => console.log("entered"),
+    //   },
+    //   "I'm a span  "
+    // );
+    // const button = React.createElement(
+    //   "button",
+    //   {
+    //     onClick: () => console.log("Clicked!"),
+    //   },
+    //   "Click me"
+    // );
+    // const container = React.createElement("div", null, [Title, Button]);
+    ReactDOM.render(<Container />, root); // show it to the user
+  </script>
+</html>
