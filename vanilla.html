@@ -18,9 +18,13 @@
     function App() {
       const [counter, setCounter] = React.useState(0);
       const onClick = () => {
-        // useState에서 준 함수(Setter임)가 자동적으로 re-render하도록 함.
-        // 파라미터로 준 값을 counter에다가 넣음.
-        setCounter(counter + 1);
+        // 예상치 못한 값이 발생할 수 있음, 업데이트가 여러 곳에서 발생 가능
+        // 해결 방책
+        // 1. 변수의 변화가 아닌 상수를 설정
+        // 2. prev를 통해 now를 계산하는 방식의 개선
+
+        // 이 방식이 더 안전하다 함. current가 현재 값이라는 보장이 가능하다고 함.
+        setCounter((current) => current + 1);
       };
 
       return (
