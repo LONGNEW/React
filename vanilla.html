@@ -16,21 +16,23 @@
     const root = document.getElementById("root");
 
     function App() {
-      const [counter, setCounter] = React.useState(0);
-      const onClick = () => {
-        // 예상치 못한 값이 발생할 수 있음, 업데이트가 여러 곳에서 발생 가능
-        // 해결 방책
-        // 1. 변수의 변화가 아닌 상수를 설정
-        // 2. prev를 통해 now를 계산하는 방식의 개선
-
-        // 이 방식이 더 안전하다 함. current가 현재 값이라는 보장이 가능하다고 함.
-        setCounter((current) => current + 1);
+      const [minutes, setMinutes] = React.useState();
+      const onChange = (event) => {
+        setMinutes(event.target.value);
       };
-
+      
+      // for의 경우 예약어이기 때문에 htmlFor사용 
+      // class의 경우에도 예약어여서 className사용
       return (
         <div>
-          <h3>Total clicks: {counter}</h3>
-          <button onClick={onClick}>Click me</button>
+          <h1>Super Converter</h1>
+          
+          <label htmlFor="minutes">Minutes</label>
+          <input value={minutes} id="minutes" placeholder="Minutes" type="number" onChange={onChange} />
+
+          <h4>You want to convert {minutes}</h4>
+          <label htmlFor="hours">Hours</label>
+          <input id="hours" placeholder="Hours" type="number" />
         </div>
       );
     }
