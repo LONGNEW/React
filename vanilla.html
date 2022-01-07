@@ -14,61 +14,49 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.getElementById("root");
-    function MinutesToHours() {
-      const [amount, setAmount] = React.useState();
-      const [flipped, setFlipped] = React.useState(false);
 
-      const onChange = (event) => {
-        setAmount(event.target.value);
-      };
-      const reset = () => {
-        setAmount(0);
-      };
-      const onFlip = () => {
-        reset();
-        setFlipped((current) => !current);
-      };
+    // function Btn({banana}) {
+    //   return (
+    //     <button
+    //       style={{
+    //         backgroundColor: "tomato",
+    //         color: "white",
+    //         padding: "10px 20px",
+    //         border: 0,
+    //         borderRadius: 10,
+    //       }}
+    //     >
+    //       {banana}
+    //     </button>
+    //   );
+    // }
 
+    // Props == parameter 함수의 인자임.
+    function Btn(props) {
       return (
-        <div>
-          <div>
-            <label htmlFor="minutes">Minutes</label>
-            <input value={flipped ? amount * 60 : amount} id="minutes" placeholder="Minutes" type="number" onChange={onChange} disabled={flipped}/>
-          </div>
-
-          <div>
-            <label htmlFor="hours">Hours</label>
-            <input value={flipped ? amount : Math.round(amount / 60)} id="hours" placeholder="Hours" type="number" disabled={!flipped} onChange={onChange}/>
-          </div>
-
-          <button onClick={reset}>Reset</button>
-          <button onClick={onFlip}>Flip</button>
-        </div>
+        <button
+          style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            border: 0,
+            borderRadius: 10,
+          }}
+        >
+          {props.banana}
+        </button>
       );
     }
-    function KmToMiles(){
-      return <h3>KM 2 M</h3>;
-    }
-    
-    function App() {
-      const [index, setIndex] = React.useState("-");
-      const onSelect = (event) => {
-        setIndex(event.target.value);
-      };
 
+    function App() {
       return (
         <div>
-          <h1>Super Converter</h1>
-          <select value={index} onChange={onSelect}>
-            <option value="-">Select a conveter</option>
-            <option value="0">Minutes & Hours</option>
-            <option value="1">Km & Miles</option>
-          </select>
-          
-          <hr />
-          {index === "-" ? "Please Select a conveter" : null}
-          {index === "0" ? <MinutesToHours /> : null}
-          {index === "1" ? <KmToMiles /> : null}
+          {
+            // Btn({banana:"Save Changes"})
+            // 이렇게 함수를 호출하는 것과 동일함.
+          }
+          <Btn banana="Save Changes" x = {}/>
+          <Btn banana="Continue"/>
         </div>
       );
     }
