@@ -15,26 +15,11 @@
   <script type="text/babel">
     const root = document.getElementById("root");
 
-    // function Btn({banana}) {
-    //   return (
-    //     <button
-    //       style={{
-    //         backgroundColor: "tomato",
-    //         color: "white",
-    //         padding: "10px 20px",
-    //         border: 0,
-    //         borderRadius: 10,
-    //       }}
-    //     >
-    //       {banana}
-    //     </button>
-    //   );
-    // }
-
-    // Props == parameter 함수의 인자임.
-    function Btn(props) {
+    function Btn({ banana, onClick }) {
+      console.log(banana, "was rendered");
       return (
         <button
+          onClick={onClick}
           style={{
             backgroundColor: "tomato",
             color: "white",
@@ -43,20 +28,20 @@
             borderRadius: 10,
           }}
         >
-          {props.banana}
+          {banana}
         </button>
       );
     }
 
+    const MemorizedBtn = React.memo(Btn);
+    // 컴포넌트의 attribute로 넣는 것은 이벤트리스너가 아닌 props로 판단함.
     function App() {
+      const [value, setValue] = React.useState("Save Changes");
+      const changeValue = () => setValue("Revert Changes");
       return (
         <div>
-          {
-            // Btn({banana:"Save Changes"})
-            // 이렇게 함수를 호출하는 것과 동일함.
-          }
-          <Btn banana="Save Changes" x = {}/>
-          <Btn banana="Continue"/>
+          <Btn banana={value} onClick={changeValue} />
+          <MemorizedBtn banana="Continue" />
         </div>
       );
     }
