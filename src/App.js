@@ -1,32 +1,29 @@
 import { useEffect, useState } from "react";
 
-function App() {
-  const [counter, setCounter] = useState(0);
-  const [keyword, setKeyword] = useState("");
-
-  const onClick = () => setCounter((prev) => prev + 1);
-  const onChange = (event) => setKeyword(event.target.value);
-
+function Hello() {
   
-  useEffect(() => {
-    console.log("Call the api");
-  }, []);
-  // keyword의 변화를 감지해서 실행.
-  useEffect(() => {
-    if (keyword !== "" && keyword.length > 5)
-      console.log("SEARCH : ", keyword);
-  }, [keyword]);
+  function destroyedFn() {
+    console.log("destroyed");
+  }
+  // 처음 생성될 때를 체크 하기 때문에 이 컴포넌트가 삭제되는 것도 감지를 함.
+  function effectFn() {
+    console.log("created");
 
+    // 삭제 될 때 동작하도록 하려면 return 문을 사용함.
+    return destroyedFn;
+  }
+  
+  useEffect(effectFn, []);
+  return <h1>Hello</h1>;
+}
+
+function App() {
+  const [showing, setShowing] = useState(false);
+  const onClick = () => setShowing((prev) => !prev);
   return (
     <div>
-      <input
-        value={keyword}
-        onChange={onChange}
-        type={"text"}
-        placeholder="Search"
-      />
-      <h1>{counter}</h1>
-      <button onClick={onClick}>click me</button>
+      {showing ? <Hello /> : null}
+      <button onClick={onClick}>{showing ? "Hide" : "Show"}</button>
     </div>
   );
 }
